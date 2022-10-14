@@ -1,7 +1,8 @@
 import mongoose, { Schema } from 'mongoose';
 
 const RecordSchema = new Schema({
-  key: String,
+  userId: mongoose.Types.ObjectId,
+  date: Date,
 });
 
 const Record = mongoose.model('Record', RecordSchema);
