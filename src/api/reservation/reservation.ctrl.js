@@ -1,10 +1,11 @@
 import Reservation from "../../models/reservation";
 
 export const write = async (req, res) => {
-  const { id, title, date } = req.body;
+  const { id, userName, title, date } = req.body;
   try {
     const reservation = new Reservation({
       userId: id,
+      userName,
       title,
       date
     });
