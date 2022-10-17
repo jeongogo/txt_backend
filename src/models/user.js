@@ -6,8 +6,9 @@ const UserSchema = new Schema({
   email: String,
   hashedPassword: String,
   name: String,
-  weight: Number,
+  phoneNumber: String,
   height: Number,
+  weight: Number,
   birthday: Date,
   gender: String,
   isAdmin: Boolean

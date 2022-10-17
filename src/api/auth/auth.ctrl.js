@@ -1,7 +1,7 @@
 import User from '../../models/user';
 
 export const register = async (req, res) => {
-  const { email, password, name } = req.body;
+  const { email, password, name, phoneNumber, weight, height, birthday, gender } = req.body;
   try {
     const exists = await User.findByEmail(email);
     if (exists) {
@@ -12,6 +12,11 @@ export const register = async (req, res) => {
     const user = new User({
       email,
       name,
+      phoneNumber,
+      height,
+      weight,
+      birthday,
+      gender,
       isAdmin: false
     });
     await user.setPassword(password);
