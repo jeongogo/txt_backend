@@ -57,3 +57,14 @@ export const login = async (req, res) => {
     res.status(500);
   }
 };
+
+export const getUser = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const user = await User.findById({ _id: id });
+    res.json({ status: 'success', user: user });
+  } catch (e) {
+    res.status(500);
+  }
+};

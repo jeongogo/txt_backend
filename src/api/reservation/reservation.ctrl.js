@@ -23,6 +23,6 @@ export const list = async (req, res) => {
     const events = await Reservation.find({ userId: id }).sort({ date: -1 });
     res.json({ status: 'success', events: events });
   } catch (e) {
-    ctx.throw(500, e);
+    res.status(500);
   }
 };
