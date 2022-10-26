@@ -1,6 +1,5 @@
 import User from '../../models/user';
 import Reservation from '../../models/reservation';
-import Record from '../../models/record';
 
 export const getUsers = async (req, res) => {
   try {
@@ -16,57 +15,6 @@ export const getRerservation = async (req, res) => {
     // const Reservation = await Reservation.find().sort({ _id: -1 });
     const events = await Reservation.find();
     res.json({ status: 'success', events });
-  } catch (e) {
-    res.status(500);
-  }
-};
-
-export const writeRecord = async (req, res) => {
-  const { 
-    maxStrL,
-    maxStrR,
-    powerL,
-    powerR,
-    RSIAvg1st,
-    RSIAvg2nd,
-    RSIMax1st,
-    RSIMax2nd,
-    reactionRate1st,
-    reactionRate2nd,
-    agilityFrontBack1st,
-    agilityFrontBack2nd,
-    agilityLeftRight1st,
-    agilityLeftRight2nd,
-    bodyRotationAbilityL,
-    bodyRotationAbilityR,
-    gripStrengthL,
-    gripStrengthR,
-  } = req.body;
-  try {
-    const record = new Record({
-      userId: req.params.id,
-      date: new Date(),
-      maxStrL,
-      maxStrR,
-      powerL,
-      powerR,
-      RSIAvg1st,
-      RSIAvg2nd,
-      RSIMax1st,
-      RSIMax2nd,
-      reactionRate1st,
-      reactionRate2nd,
-      agilityFrontBack1st,
-      agilityFrontBack2nd,
-      agilityLeftRight1st,
-      agilityLeftRight2nd,
-      bodyRotationAbilityL,
-      bodyRotationAbilityR,
-      gripStrengthL,
-      gripStrengthR,
-    });
-    await record.save();
-    res.json({ status: 'success'});    
   } catch (e) {
     res.status(500);
   }

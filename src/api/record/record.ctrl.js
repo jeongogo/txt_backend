@@ -21,3 +21,54 @@ export const list = async (req, res) => {
 //     res.status(500);
 //   }
 // };
+
+export const writeRecord = async (req, res) => {
+  const { 
+    maxStrL,
+    maxStrR,
+    powerL,
+    powerR,
+    RSIAvg1st,
+    RSIAvg2nd,
+    RSIMax1st,
+    RSIMax2nd,
+    reactionRate1st,
+    reactionRate2nd,
+    agilityFrontBack1st,
+    agilityFrontBack2nd,
+    agilityLeftRight1st,
+    agilityLeftRight2nd,
+    bodyRotationAbilityL,
+    bodyRotationAbilityR,
+    gripStrengthL,
+    gripStrengthR,
+  } = req.body;
+  try {
+    const record = new Record({
+      userId: req.params.id,
+      date: new Date(),
+      maxStrL,
+      maxStrR,
+      powerL,
+      powerR,
+      RSIAvg1st,
+      RSIAvg2nd,
+      RSIMax1st,
+      RSIMax2nd,
+      reactionRate1st,
+      reactionRate2nd,
+      agilityFrontBack1st,
+      agilityFrontBack2nd,
+      agilityLeftRight1st,
+      agilityLeftRight2nd,
+      bodyRotationAbilityL,
+      bodyRotationAbilityR,
+      gripStrengthL,
+      gripStrengthR,
+    });
+    await record.save();
+    res.json({ status: 'success'});    
+  } catch (e) {
+    res.status(500);
+  }
+};
