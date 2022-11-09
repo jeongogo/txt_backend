@@ -1,6 +1,4 @@
 import express from "express";
-import cookieParser from "cookie-parser";
-import session from "express-session";
 import mongoose from "mongoose";
 import path from "path";
 import dotenv from "dotenv";
@@ -25,7 +23,11 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api", api);
 
-app.use("/", express.static(path.join(__dirname, "public")));
+app.use("/", express.static(path.join(__dirname, "../../txt_frontend/build")));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../../txt_frontend/build'));
+});
 
 const port = PORT || 4001;
 app.listen(port, () => {
