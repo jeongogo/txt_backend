@@ -14,7 +14,7 @@ export const getRerservation = async (req, res) => {
   try {
     // const Reservation = await Reservation.find().sort({ _id: -1 });
     const events = await Reservation.find();
-    res.json({ status: 'success', events });
+    res.json({ status: 'success', events: events });
   } catch (e) {
     res.status(500);
   }

@@ -26,3 +26,14 @@ export const list = async (req, res) => {
     res.status(500);
   }
 };
+
+export const remove = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    await Reservation.findByIdAndRemove(id).exec();
+    res.json({ status: 'success' });
+  } catch (e) {
+    res.status(500);
+  }
+};

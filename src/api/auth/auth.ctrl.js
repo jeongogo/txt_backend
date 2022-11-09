@@ -1,7 +1,16 @@
-import User from '../../models/user';
+import User from "../../models/user";
 
 export const register = async (req, res) => {
-  const { email, password, name, phoneNumber, weight, height, birthday, gender } = req.body;
+  const {
+    email,
+    password,
+    name,
+    phoneNumber,
+    weight,
+    height,
+    birthday,
+    gender,
+  } = req.body;
   try {
     const exists = await User.findByEmail(email);
     if (exists) {
@@ -17,14 +26,13 @@ export const register = async (req, res) => {
       weight,
       birthday,
       gender,
-      isAdmin: false
+      isAdmin: false,
     });
     await user.setPassword(password);
     await user.save();
 
     const token = user.generateToken();
-    res.json({ status: 'success', user: user.serialize(), accessToken: token});
-    
+    res.json({ status: "success", user: user.serialize(), accessToken: token });
   } catch (e) {
     res.status(500);
   }
@@ -41,7 +49,9 @@ export const login = async (req, res) => {
   try {
     const user = await User.findByEmail(email);
     if (!user) {
-      res.status(401);
+      res.json({
+        status: "failed",
+      });
       return;
     }
     const valid = await user.checkPassword(password);
@@ -51,8 +61,7 @@ export const login = async (req, res) => {
     }
 
     const token = user.generateToken();
-    res.json({ status: 'success', user: user.serialize(), accessToken: token});
-
+    res.json({ status: "success", user: user.serialize(), accessToken: token });
   } catch (e) {
     res.status(500);
   }
@@ -63,7 +72,7 @@ export const getUser = async (req, res) => {
 
   try {
     const user = await User.findById({ _id: id });
-    res.json({ status: 'success', user: user });
+    res.json({ status: "success", user: user });
   } catch (e) {
     res.status(500);
   }

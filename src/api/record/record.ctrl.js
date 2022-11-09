@@ -4,7 +4,7 @@ export const list = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const records = await Record.find({ userId: id }).sort({ date: -1 });
+    const records = await Record.find({ userId: id }).sort({ date: 1 });
     res.json({ status: 'success', records: records });
   } catch (e) {
     res.status(500);
