@@ -7,6 +7,7 @@ const UserSchema = new Schema({
   hashedPassword: String,
   name: String,
   phoneNumber: String,
+  mainEvent: String,
   height: Number,
   weight: Number,
   birthday: Date,

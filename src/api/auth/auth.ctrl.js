@@ -6,6 +6,7 @@ export const register = async (req, res) => {
     password,
     name,
     phoneNumber,
+    mainEvent,
     weight,
     height,
     birthday,
@@ -22,6 +23,7 @@ export const register = async (req, res) => {
       email,
       name,
       phoneNumber,
+      mainEvent,
       height,
       weight,
       birthday,
@@ -56,7 +58,9 @@ export const login = async (req, res) => {
     }
     const valid = await user.checkPassword(password);
     if (!valid) {
-      res.status(401);
+      res.json({
+        status: "failed",
+      });
       return;
     }
 
